@@ -1,0 +1,59 @@
+{
+  "name": "salesforce-package-xml-power-tools",
+  "displayName": "Salesforce Package.xml Power Tools",
+  "description": "An extention to generate, merge, and organize salesforce Package.xml files.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.71.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:salesforce-package-xml-power-tools.mergePackages"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "salesforce-package-xml-power-tools.mergePackages",
+        "title": "Merge Salesforce Packages"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "when": "resourceExtname == .xml",
+          "command": "salesforce-package-xml-power-tools.mergePackages",
+          "group": "z_commands"
+        }
+      ],
+      "explorer/context": [
+        {
+          "when": "resourceExtname == .xml",
+          "command": "salesforce-package-xml-power-tools.mergePackages",
+          "group": "7_modification"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "node ./test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.2.0",
+    "@types/mocha": "^9.1.1",
+    "@types/node": "16.x",
+    "@types/vscode": "^1.71.0",
+    "@vscode/test-electron": "^2.1.5",
+    "eslint": "^8.20.0",
+    "glob": "^8.0.3",
+    "mocha": "^10.0.0",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "xml-js": "^1.6.11"
+  }
+}
