@@ -1,6 +1,9 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 const vscode = require('vscode');
+const merger = require('./src/merger');
+const simpleGit = require('simple-git');
+
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -66,17 +69,37 @@ function activate(context) {
 			merger.mergePackageFiles(sourceFile, destFile);
 			// Display a message box to the user
 			vscode.window.showInformationMessage('Package File Updated!');
-		}else {
+		} else {
 			vscode.window.showErrorMessage('Please select a file.')
 		}
 
 	});
+	let disposable2 = vscode.commands.registerCommand('salesforce-package-xml-power-tools.generatePackage', async function () {
+		// console.log(vscode.workspace.workspaceFolders[0].uri.path.substring(1));
+		// console.log(vscode.workspace.workspaceFolders);
+		const options = {
+			baseDir: vscode.workspace.workspaceFolders[0].uri._fsPath,
+			binary: 'git',
+			maxConcurrentProcesses: 6,
+			trimmed: false,
+		};
 
+		// when setting all options in a single object
+		const git = simpleGit(options);
+		const commits = await git.log();
+		const mainBranch = commits.all[commits.all.length - 1].refs;
+		const changeLogRaw = (await git.diff([mainBranch, '--name-only']))
+		const changeLog = changeLogRaw.split('\n').filter(element => element);;
+		console.log(changeLog);
+		
+	});
+	
 	context.subscriptions.push(disposable);
+	context.subscriptions.push(disposable2);
 }
 
 // this method is called when your extension is deactivated
-function deactivate() {}
+function deactivate() { }
 
 module.exports = {
 	activate,
