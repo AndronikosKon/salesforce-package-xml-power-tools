@@ -3,6 +3,7 @@
 const vscode = require('vscode');
 const merger = require('./src/merger');
 const simpleGit = require('simple-git');
+const sfdx = require('sfdx-js').Client.createUsingPath('sfdx');
 
 
 // this method is called when your extension is activated

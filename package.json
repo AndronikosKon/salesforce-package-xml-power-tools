@@ -21,7 +21,8 @@
       {
         "command": "salesforce-package-xml-power-tools.mergePackages",
         "title": "Merge Salesforce Packages"
-      },{
+      },
+      {
         "command": "salesforce-package-xml-power-tools.generatePackage",
         "title": "Generate Salesforce Package"
       }
@@ -60,6 +61,7 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
+    "sfdx-js": "^4.5.0",
     "simple-git": "^3.14.1",
     "xml-js": "^1.6.11"
   }
