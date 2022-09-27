@@ -3,6 +3,8 @@
   "displayName": "Salesforce Package.xml Power Tools",
   "description": "An extention to generate, merge, and organize salesforce Package.xml files.",
   "version": "0.0.1",
+  "repository": "https://github.com/AndronikosKon/salesforce-package-xml-power-tools",
+  "publisher": "Andronikos-Konstantinidis",
   "engines": {
     "vscode": "^1.71.0"
   },
