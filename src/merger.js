@@ -2,11 +2,11 @@ var convert = require('xml-js');
 const fs = require('fs');
 
 module.exports = {
-    mergePackageFiles: function (sourcePath, destPath) {
+    mergePackageFiles: function (sourcePath, destPath, indentation) {
         var source = convertFileToObject(sourcePath);
         var dest = convertFileToObject(destPath);
-        console.log('source', source);
-        console.log('dest', dest);
+        // console.log('source', source);
+        // console.log('dest', dest);
         if( source.Package.types.length == undefined){
             source.Package.types = [source.Package.types];
         }
@@ -63,15 +63,14 @@ module.exports = {
             return 0;
         });
         // console.log(dest);
-        console.log('source', source);
-        console.log('dest', dest);
-        convertObjectToFile(dest, destPath);
+        // console.log(JSON.stringify(source, null, 2));
+        convertObjectToFile(dest, destPath, indentation);
     }
   };
 
 
-function convertObjectToFile(object, file){
-    const xml = convert.json2xml(object, {compact: true, spaces: 4});
+function convertObjectToFile(object, file, indentation){
+    const xml = convert.json2xml(object, {compact: true, spaces: indentation});
     fs.writeFileSync(file, xml);
 }
 

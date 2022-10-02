@@ -13,36 +13,162 @@
   ],
   "activationEvents": [
     "onCommand:salesforce-package-xml-power-tools.mergePackages",
-    "onCommand:salesforce-package-xml-power-tools.generatePackage"
+    "onCommand:salesforce-package-xml-power-tools.generatePackage",
+    "onCommand:salesforce-package-xml-power-tools.generatePackageDefault",
+    "onCommand:salesforce-package-xml-power-tools.generatePackageDefaultLocation",
+    "onCommand:salesforce-package-xml-power-tools.generatePackageHere",
+    "onCommand:salesforce-package-xml-power-tools.addSourceFile",
+    "onCommand:salesforce-package-xml-power-tools.addDestFile",
+    "onCommand:salesforce-package-xml-power-tools.mergeSavedFiles",
+    "onCommand:salesforce-package-xml-power-tools.mergeSavedSourceHere"
   ],
   "main": "./extension.js",
   "contributes": {
     "commands": [
       {
         "command": "salesforce-package-xml-power-tools.mergePackages",
+        "category": "PPT",
         "title": "Merge Salesforce Packages"
       },
       {
         "command": "salesforce-package-xml-power-tools.generatePackage",
+        "category": "PPT",
         "title": "Generate Salesforce Package"
+      },
+      {
+        "command": "salesforce-package-xml-power-tools.generatePackageDefault",
+        "category": "PPT",
+        "title": "Generate Salesforce Package with default settings"
+      },
+      {
+        "command": "salesforce-package-xml-power-tools.generatePackageDefaultLocation",
+        "category": "PPT",
+        "title": "Generate Salesforce Package with default location"
+      },
+      {
+        "command": "salesforce-package-xml-power-tools.generatePackageHere",
+        "category": "PPT",
+        "title": "Generate Salesforce Package here"
+      },
+      {
+        "command": "salesforce-package-xml-power-tools.addSourceFile",
+        "category": "PPT",
+        "title": "Select source package to merge"
+      },
+      {
+        "command": "salesforce-package-xml-power-tools.addDestFile",
+        "category": "PPT",
+        "title": "Select destination package to merge"
+      },
+      {
+        "command": "salesforce-package-xml-power-tools.mergeSavedFiles",
+        "category": "PPT",
+        "title": "Merge Selected Packages"
+      },
+      {
+        "command": "salesforce-package-xml-power-tools.mergeSavedSourceHere",
+        "category": "PPT",
+        "title": "Merge Selected source Package here"
       }
     ],
+    "configuration": {
+      "title": "Package Xml Power Tools",
+      "type": "object",
+      "properties": {
+        "PackageXmlPowerTools.MetadataApiVersion": {
+          "type": "string",
+          "default": "55.0",
+          "description": "The metadata version used when generating a new Package.xml file"
+        },
+        "PackageXmlPowerTools.indentationType": {
+          "type": "string",
+          "default": "\t",
+          "description": "The character that will be used for indentation during the xml generation or merge."
+        },
+        "PackageXmlPowerTools.indentationNumber": {
+          "type": "number",
+          "default": 1,
+          "minimum": 1,
+          "maximum": 6,
+          "description": "The number of character that will be used for indentation during the xml generation or merge)."
+        },
+        "PackageXmlPowerTools.packageMerge.defaultPackageLocation": {
+          "type": "string",
+          "default": "/manifest/",
+          "description": "The default destination package location to use while merging two packages (Default: '/manifest')"
+        },
+        "PackageXmlPowerTools.packageGenerate.defaultPackageLocation": {
+          "type": "string",
+          "default": "/manifest/",
+          "description": "The default destination package location to use while generating a package (Default: '/manifest')"
+        },
+        "PackageXmlPowerTools.packageGenerate.defaultPackageName": {
+          "type": "string",
+          "default": "package.xml",
+          "description": "The default destination package file name to use while generating a package (Default: 'package.xml')"
+        }
+      }
+    },
     "menus": {
       "editor/context": [
         {
           "when": "resourceExtname == .xml",
-          "command": "salesforce-package-xml-power-tools.mergePackages",
+          "submenu": "pptSubMenu",
           "group": "z_commands"
         }
       ],
       "explorer/context": [
         {
           "when": "resourceExtname == .xml",
-          "command": "salesforce-package-xml-power-tools.mergePackages",
+          "submenu": "pptSubMenu",
           "group": "7_modification"
         }
-      ]
-    }
+      ],
+      "pptSubMenu": [
+        {
+          "command": "salesforce-package-xml-power-tools.generatePackageHere"
+        },
+        {
+          "command": "salesforce-package-xml-power-tools.mergePackages"
+        },
+        {
+          "command": "salesforce-package-xml-power-tools.addSourceFile"
+        },
+        {
+          "command": "salesforce-package-xml-power-tools.addDestFile"
+        },
+        {
+          "command": "salesforce-package-xml-power-tools.mergeSavedFiles"
+        },
+        {
+          "command": "salesforce-package-xml-power-tools.mergeSavedSourceHere"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "salesforce-package-xml-power-tools.generatePackageHere",
+          "when": "false"
+        },
+        {
+          "command": "salesforce-package-xml-power-tools.addSourceFile",
+          "when": "false"
+        },
+        {
+          "command": "salesforce-package-xml-power-tools.addDestFile",
+          "when": "false"
+        },
+        {
+          "command": "salesforce-package-xml-power-tools.mergeSavedSourceHere",
+          "when": "false"
+        }
+    ]
+    },
+    "submenus": [
+      {
+        "label": "Package Power Tools",
+        "id": "pptSubMenu"
+      }
+    ]
   },
   "scripts": {
     "lint": "eslint .",
@@ -61,7 +187,6 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
-    "sfdx-js": "^4.5.0",
     "simple-git": "^3.14.1",
     "xml-js": "^1.6.11"
   }
