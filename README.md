@@ -7,28 +7,28 @@ This is a simple extention that can automate the creation and merging of Salesfo
 # Generate Packages
 
 You can automatically generate a salesforce package containing every change in the current git branch.
-* From the command Palette:
-    1. "Generate Salesforce Package with default settings" will utilize the configuration options "Package Generate: Default Package Location" and "Package Generate: Default Package Name"  to generate an xml file on the default location.
-    2. "Generate Salesforce Package with default location" will utilize the configuration option "Package Generate: Default Package Location" to generate an xml file on the default location, with a user-supplied name.
-    3. "Generate Salesforce Package" will promt the user for a destination folder and a file name to generate an xml file.
-* From the editor context menu:
-    1. "Generate Salesforce Package here" will generate the xml in the currently open file.
-* From the explorer context menu:
-    1. "Generate Salesforce Package here" will generate the xml in the currently selected file.
+1. From the command Palette:
+    * "Generate Salesforce Package with default settings" will utilize the configuration options "Package Generate: Default Package Location" and "Package Generate: Default Package Name"  to generate an xml file on the default location.
+    * "Generate Salesforce Package with default location" will utilize the configuration option "Package Generate: Default Package Location" to generate an xml file on the default location, with a user-supplied name.
+    * "Generate Salesforce Package" will promt the user for a destination folder and a file name to generate an xml file.
+2. From the editor context menu:
+    * "Generate Salesforce Package here" will generate the xml in the currently open file.
+3. From the explorer context menu:
+    * "Generate Salesforce Package here" will generate the xml in the currently selected file.
 
 # Merge Packages
 
 You can automatically merge two salesforce package files.
-* From the command Palette:
-    1. "Merge Salesforce Packages" -> "Select source file" -> "Select Destination File"
-* From the editor context menu:
-    1. "Merge Salesforce Packages" -> "Select Destination File"
-    2. "Select source package to merge" -> "Select destination package to merge" -> "Merge Selected Packages"
-    3. "Select source package to merge" -> "Merge Selected source Package here"
-* From the explorer context menu:
-    1. "Merge Salesforce Packages" -> "Select Destination File"
-    2. "Select source package to merge" -> "Select destination package to merge" -> "Merge Selected Packages"
-    3. "Select source package to merge" -> "Merge Selected source Package here"
+1. From the command Palette:
+    * "Merge Salesforce Packages" -> "Select source file" -> "Select Destination File"
+2. From the editor context menu:
+    * "Merge Salesforce Packages" -> "Select Destination File"
+    * "Select source package to merge" -> "Select destination package to merge" -> "Merge Selected Packages"
+    * "Select source package to merge" -> "Merge Selected source Package here"
+3. From the explorer context menu:
+    * "Merge Salesforce Packages" -> "Select Destination File"
+    * "Select source package to merge" -> "Select destination package to merge" -> "Merge Selected Packages"
+    * "Select source package to merge" -> "Merge Selected source Package here"
 
 ## Configuration
 
