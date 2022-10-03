@@ -261,10 +261,16 @@ async function generatePackage(filePath, indentation, apiVersion) {
 		// when setting all options in a single object
 		const git = simpleGit(options);
 		const commits = await git.log();
+		var currentBranch = commits.latest.refs.replace('HEAD -> ', '');
 		var mainBranch;
+		console.log(commits);
+		let shouldSkip = false;
 		commits.all.forEach(commit => {
-			if(commit.refs){
+			if (shouldSkip) return;
+
+			if(commit.refs && !commit.refs.includes(currentBranch)){
 				mainBranch = commit.refs.split(',')[0].replace('origin/','');
+				shouldSkip = true;
 			}
 		});
 		const changeLogRaw = (await git.diff([mainBranch, '--name-only']));
