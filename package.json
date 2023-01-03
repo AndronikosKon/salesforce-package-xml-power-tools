@@ -8,6 +8,17 @@
   "engines": {
     "vscode": "^1.71.0"
   },
+  "keywords": [
+    "sfdx",
+		"salesforcedx",
+		"sfdx package xml",
+		"salesforce",
+		"salesforce package xml",
+		"salesforce package xml generator",
+		"salesforce package merge",
+		"salesforce package generate",
+		"salesforce git"
+  ],
   "categories": [
     "Other"
   ],
